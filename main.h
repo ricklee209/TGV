@@ -911,6 +911,14 @@ double (*U3_)[Y_m][Z_m] = new double[X_np][Y_m][Z_m],
 double (*U4_)[Y_m][Z_m] = new double[X_np][Y_m][Z_m], 
 double (*U5_)[Y_m][Z_m] = new double[X_np][Y_m][Z_m], 
 
+
+double (*U1q)[Y_m][Z_m] = new double[X_np][Y_m][Z_m], 
+double (*U2q)[Y_m][Z_m] = new double[X_np][Y_m][Z_m], 
+double (*U3q)[Y_m][Z_m] = new double[X_np][Y_m][Z_m], 
+double (*U4q)[Y_m][Z_m] = new double[X_np][Y_m][Z_m], 
+double (*U5q)[Y_m][Z_m] = new double[X_np][Y_m][Z_m],
+
+
 double (*J)[Y_m][Z_m] = new double[X_np][Y_m][Z_m],
 
 double (*J_v)[Y_m][Z_m] = new double[X_np][Y_m][Z_m], 

@@ -31,12 +31,3 @@
 #define NoLimiter 
 
 
-
-
-
-// ---- DT : dual time stepping ---- //
-// ---- NODT : No dual time stepping ---- //
-
-#define NODT 
-
-

@@ -46,11 +46,11 @@ int main(int argc, char **argv)
 
 	int statistic_step = 10;
 	int iteration_end_step = 200;
-	int output_step = 500;
-	int count = 25601;
+	int output_step = 2000;
+	int count = 500000;
 	int step;
 	
-	double deltaT = 1.273896813113166e-008;
+	double deltaT = 7.643380878678996e-009;
 	double Ep = 0.1;
 	double Roe_criterion = 0.005;
 	double E_high = 0.009;
@@ -439,7 +439,7 @@ int X_np = gcount[myid]+6;    /**** How many cells in X-direction for each CPU *
 
 					#ifdef NODT
 
-						printf("%d\t%f\t",step,er1);
+						printf("%d\t%f\n",step,er1);
 		
 					#else
 
@@ -454,6 +454,7 @@ int X_np = gcount[myid]+6;    /**** How many cells in X-direction for each CPU *
 			Statistic(myid,
 					  step,iteration, statistic_step,deltaT,
 				      U1_,U2_,U3_,U4_,U5_,
+					  U1q,U2q,U3q,U4q,U5q,
 				      J,
 					  J_v,
 					  xidx_v,xidy_v,xidz_v,etdx_v,etdy_v,etdz_v,ztdx_v,ztdy_v,ztdz_v,

@@ -15,7 +15,7 @@ double f = 0.0;
 double Q0 = 0.0;
 double Qold = Q0;
 
-double high = 0.001128575059171;
+double high = 6.771450355027539e-004;
 
 double psi = 0.001;
 
