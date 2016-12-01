@@ -65,21 +65,10 @@ double (*ztdz_u)[Y_m][Z_m] = new double[X_np][Y_m][Z_m]
 				xdzt_u=0;
 
 				etdx_u[i][j][k]=0;
-
-				
-				temp = (0.5*high)*(1-1./tanh(gamma)*tanh(gamma*(1-2*(j-0.5)*deltaET)));
-				temp1 = (1-temp/(0.5*high))*tanh(gamma);
-				
-
-				etdy_u[i][j][k]= tanh(gamma)/(2*(0.5*high)*gamma*(1-temp1*temp1));
-
+				etdy_u[i][j][k]=1;
 				etdz_u[i][j][k]=0;
 				ydxi_u=0;
-
-				temp2 = 1/cosh(gamma*(1-2*(j-0.5)*deltaET));
-
-				ydet_u = high*gamma*1./tanh(gamma)*temp2*temp2;
-
+				ydet_u=1;
 				ydzt_u=0;
 
 				ztdx_u[i][j][k]=0;

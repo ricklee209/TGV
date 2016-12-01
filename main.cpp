@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 	int count = 500000;
 	int step;
 	
-	double deltaT = 7.643380878678996e-009;
+	double deltaT = 1.0e-008;
 	double Ep = 0.1;
 	double Roe_criterion = 0.005;
 	double E_high = 0.009;

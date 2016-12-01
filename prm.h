@@ -22,3 +22,10 @@ double psi = 0.001;
 double gamma = 1.0e-8;
 
 /**** computational parameters-end ****/
+
+double rho0 = 1.1842;
+double U0 = 69.2118;
+double V0 = 0.0;
+double W0 = 0.0;
+double P0 = 101300.0;
+double T0 = P0/(R*T0);

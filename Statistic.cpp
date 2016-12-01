@@ -82,10 +82,11 @@ double (*EpY)[Y_m][Z_m] = new double[X_np][Y_m][Z_m]
 	
 	double rho,U,V,W,VV,P,C,T,h,H;
 	double r,u,v,w;
-	double Ek0,Ek,Ekq,ek,t_non;
+	double Ekini,Ek0,Ek,Ekq,ek,t_non,epn,epn0;
 
 	Ek = 0.0;
-
+    epn = 0.0;
+    Ekq = 0.0;
 
 // ============================================================================================================= //
 
@@ -98,7 +99,7 @@ if ((step%statistic_step == 0)) {
 	//// ============================================ ////
 		
 			for (i = istart; i <= iend; i++) {
-				for (j = 2; j <= nz; j++) {
+				for (j = 2; j <= ny; j++) {
 					for (k = 2; k <= nz; k++) {
 
 						rho = U1_[i][j][k];
@@ -108,39 +109,50 @@ if ((step%statistic_step == 0)) {
 						
 						ek = 0.5*rho*(U*U+V*V+W*W);
 
-						Ek = Ek + 1.0/1.1842*ek;
+						Ek = Ek + 1.0/rho0*ek;
 
 						r = U1q[i][j][k];
 						u = U2q[i][j][k]/r;
 						v = U3q[i][j][k]/r;
 						w = U4q[i][j][k]/r; 
 
-						
 						ek = 0.5*r*(u*u+v*v+w*w);
 
-						Ekq = Ekq + 1.0/1.1842*ek;
+						Ekq = Ekq + 1.0/rho0*ek;
 
 					}
 				}
 			}
 
-			Ek = -(Ek-Ekq);
+            
+			Ekini = rho0*(U0*U0+V0*V+W0*W0);
 
+			epn = -(Ek-Ekq)/deltaT/X_out/Y_out/Z_out;
+
+			t_non = (high/U0)*step;
+
+            
 
 	MPI_Comm comm;
 	comm=MPI_COMM_WORLD;
 	icount = 1;
 	idest = 0;
+    
+    
 	MPI_Reduce ((void*)&Ek, (void*)&Ek0, icount, MPI_DOUBLE, MPI_SUM, idest, comm);	
+	MPI_Reduce ((void*)&epn, (void*)&epn0, icount, MPI_DOUBLE, MPI_SUM, idest, comm);	
 
 	if (myid == 0) {
 	// =============================================================================================================== //
+
+		Ek0 = Ek0/X_out/Y_out/Z_out;
+		epn0 = epn0;
 
 		FILE *fptr;
 		sprintf(LESdata,"Ek.dat");
 		fptr = fopen(LESdata,"a");
 
-		fprintf(fptr,"%f\t%f\n",step*deltaT,Ek0);
+		fprintf(fptr,"%f\t%f\t%f\n",t_non,Ek0/Ekini,epn0/Ekini);
 
 		fclose(fptr);
 
