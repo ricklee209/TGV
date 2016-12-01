@@ -15,7 +15,7 @@ double f = 0.0;
 double Q0 = 0.0;
 double Qold = Q0;
 
-double high = 6.771450355027539e-004;
+double high = 7.2229e-004;
 
 double psi = 0.001;
 
@@ -24,7 +24,7 @@ double gamma = 1.0e-8;
 /**** computational parameters-end ****/
 
 double rho0 = 1.1842;
-double U0 = 69.2118;
+double U0 = 34.6064;
 double V0 = 0.0;
 double W0 = 0.0;
 double P0 = 101300.0;
