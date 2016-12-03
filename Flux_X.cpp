@@ -90,10 +90,10 @@ double (*EpX)[Y_m][Z_m] = new double[X_np][Y_m][Z_m]
 
 
 //// ============================================ ////
-		if (myid ==0) istart = 4;		          ////	
+		if (myid ==0) istart = 2;		          ////	
 		else istart = 2;	             		  ////	
 //// ============================================ ////
-		if (myid ==nproc-1) iend = gend[myid]-1;  ////
+		if (myid ==nproc-1) iend = gend[myid]+1;  ////
 		else iend = gend[myid]+1;				  ////
 //// ============================================ ////
 
@@ -127,94 +127,6 @@ double (*EpX)[Y_m][Z_m] = new double[X_np][Y_m][Z_m]
 			}
 		}
 	}
-
-	if (myid == 0) {
-		//#pragma omp parallel for private(k,k_)
-		for ( j = 2; j <= ny; j++) {
-			for (k = 2; k <= nz; k++) {
-		
-				i = 2;
-				
-				temp = 1./(1/J[i][j][k]+1/J[i+1][j][k]);
-			
-				ML1[i][j-1][k-1] = temp*(U1_[i][j][k]+U1_[i+1][j][k]);
-				ML2[i][j-1][k-1] = temp*(U2_[i][j][k]+U2_[i+1][j][k]);
-				ML3[i][j-1][k-1] = temp*(U3_[i][j][k]+U3_[i+1][j][k]);
-				ML4[i][j-1][k-1] = temp*(U4_[i][j][k]+U4_[i+1][j][k]);
-				ML5[i][j-1][k-1] = temp*(U5_[i][j][k]+U5_[i+1][j][k]);
-				
-				i = 3; 
-			
-				temp = 1./(-1/J[i-1][j][k]+5/J[i][j][k]+2/J[i+1][j][k]);
-
-				ML1[i][j-1][k-1] = temp*(-U1_[i-1][j][k]+5*U1_[i][j][k]+2*U1_[i+1][j][k]);
-				ML2[i][j-1][k-1] = temp*(-U2_[i-1][j][k]+5*U2_[i][j][k]+2*U2_[i+1][j][k]);
-				ML3[i][j-1][k-1] = temp*(-U3_[i-1][j][k]+5*U3_[i][j][k]+2*U3_[i+1][j][k]);
-				ML4[i][j-1][k-1] = temp*(-U4_[i-1][j][k]+5*U4_[i][j][k]+2*U4_[i+1][j][k]);
-				ML5[i][j-1][k-1] = temp*(-U5_[i-1][j][k]+5*U5_[i][j][k]+2*U5_[i+1][j][k]);
-				
-				temp = 1./(2/J[i-1][j][k]+5/J[i][j][k]-1/J[i+1][j][k]);
-							
-				MR1[i-1][j-1][k-1] = temp*(2*U1_[i-1][j][k]+5*U1_[i][j][k]-U1_[i+1][j][k]);
-				MR2[i-1][j-1][k-1] = temp*(2*U2_[i-1][j][k]+5*U2_[i][j][k]-U2_[i+1][j][k]);
-				MR3[i-1][j-1][k-1] = temp*(2*U3_[i-1][j][k]+5*U3_[i][j][k]-U3_[i+1][j][k]);
-				MR4[i-1][j-1][k-1] = temp*(2*U4_[i-1][j][k]+5*U4_[i][j][k]-U4_[i+1][j][k]);
-				MR5[i-1][j-1][k-1] = temp*(2*U5_[i-1][j][k]+5*U5_[i][j][k]-U5_[i+1][j][k]);
-					
-				
-				}
-			}
-		}
-
-
-	if (myid == nproc-1) {
-	
-		for ( j = 2; j <= ny; j++) {
-			for (k = 2; k <= nz; k++) {
-			
-				
-				i = gend[myid];
-							
-				temp = 1./(-1/J[i-1][j][k]+5/J[i][j][k]+2/J[i+1][j][k]);
-
-				ML1[i][j-1][k-1] = temp*(-U1_[i-1][j][k]+5*U1_[i][j][k]+2*U1_[i+1][j][k]);
-				ML2[i][j-1][k-1] = temp*(-U2_[i-1][j][k]+5*U2_[i][j][k]+2*U2_[i+1][j][k]);
-				ML3[i][j-1][k-1] = temp*(-U3_[i-1][j][k]+5*U3_[i][j][k]+2*U3_[i+1][j][k]);
-				ML4[i][j-1][k-1] = temp*(-U4_[i-1][j][k]+5*U4_[i][j][k]+2*U4_[i+1][j][k]);
-				ML5[i][j-1][k-1] = temp*(-U5_[i-1][j][k]+5*U5_[i][j][k]+2*U5_[i+1][j][k]);
-							
-				temp = 1./(2/J[i-1][j][k]+5/J[i][j][k]-1/J[i+1][j][k]);
-							
-				MR1[i-1][j-1][k-1] = temp*(2*U1_[i-1][j][k]+5*U1_[i][j][k]-U1_[i+1][j][k]);
-				MR2[i-1][j-1][k-1] = temp*(2*U2_[i-1][j][k]+5*U2_[i][j][k]-U2_[i+1][j][k]);
-				MR3[i-1][j-1][k-1] = temp*(2*U3_[i-1][j][k]+5*U3_[i][j][k]-U3_[i+1][j][k]);
-				MR4[i-1][j-1][k-1] = temp*(2*U4_[i-1][j][k]+5*U4_[i][j][k]-U4_[i+1][j][k]);
-				MR5[i-1][j-1][k-1] = temp*(2*U5_[i-1][j][k]+5*U5_[i][j][k]-U5_[i+1][j][k]);
-				
-				//if (k == 2 & j == 2)
-				//printf("%d\t%f\t%f\t%f\t%f\n",i,ML1[i][j-1][k-1],MR1[i-1][j-1][k-1],ML2[i][j-1][k-1],MR2[i-1][j-1][k-1]);
-
-					
-				i = gend[myid];
-				
-				temp = 1./(1/J[i][j][k]+1/J[i+1][j][k]);
-					
-				MR1[i][j-1][k-1] = temp*(U1_[i][j][k]+U1_[i+1][j][k]);
-				MR2[i][j-1][k-1] = temp*(U2_[i][j][k]+U2_[i+1][j][k]);
-				MR3[i][j-1][k-1] = temp*(U3_[i][j][k]+U3_[i+1][j][k]);
-				MR4[i][j-1][k-1] = temp*(U4_[i][j][k]+U4_[i+1][j][k]);
-				MR5[i][j-1][k-1] = temp*(U5_[i][j][k]+U5_[i+1][j][k]);
-				
-					
-				//if (k == 2 & j == 2)
-				//printf("%d\t%f\t%f\t%f\t%f\n",i,ML1[i][j-1][k-1],MR1[i-1][j-1][k-1],ML2[i][j-1][k-1],MR2[i-1][j-1][k-1]);
-						
-
-				}
-			}
-		}
-// ============================================================================ //
-/**** MUSCL 5th-order-end****/
 
 
 		

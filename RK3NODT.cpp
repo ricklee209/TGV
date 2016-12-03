@@ -161,10 +161,10 @@ Rf1,Rf2,Rf3,Rf4,Rf5,Rk1,Rk2,Rk3,Rk4,Rk5\
 
 					
 				Rk1 = Rf1;
-				Rk2 = Rf2+vF2[i][j][k]+f/J[i][j][k];
+				Rk2 = Rf2+vF2[i][j][k];
 				Rk3 = Rf3+vF3[i][j][k];
 				Rk4 = Rf4+vF4[i][j][k];
-				Rk5 = Rf5+vF5[i][j][k]+f*tmp/J[i][j][k];
+				Rk5 = Rf5+vF5[i][j][k];
 
 				MR1[i][j][k] = deltaT*Rk1;
 				MR2[i][j][k] = deltaT*Rk2;

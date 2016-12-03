@@ -53,6 +53,12 @@ double (*J)[Y_m][Z_m] = new double[X_np][Y_m][Z_m]
 			U3_[i][j][1] = U3_[i][j][nz];
 			U4_[i][j][1] = U4_[i][j][nz];
 			U5_[i][j][1] = U5_[i][j][nz];
+
+			U1_[i][j][0] = U1_[i][j][nz-1];
+			U2_[i][j][0] = U2_[i][j][nz-1];
+			U3_[i][j][0] = U3_[i][j][nz-1];
+			U4_[i][j][0] = U4_[i][j][nz-1];
+			U5_[i][j][0] = U5_[i][j][nz-1];
 			
 
 			/* front side */
@@ -61,6 +67,12 @@ double (*J)[Y_m][Z_m] = new double[X_np][Y_m][Z_m]
 			U3_[i][j][nzz] = U3_[i][j][2];
 			U4_[i][j][nzz] = U4_[i][j][2];
 			U5_[i][j][nzz] = U5_[i][j][2];
+
+			U1_[i][j][nzzz] = U1_[i][j][3];
+			U2_[i][j][nzzz] = U2_[i][j][3];
+			U3_[i][j][nzzz] = U3_[i][j][3];
+			U4_[i][j][nzzz] = U4_[i][j][3];
+			U5_[i][j][nzzz] = U5_[i][j][3];
 			
 		}
 	}

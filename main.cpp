@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 	int count = 500000;
 	int step;
 	
-	double deltaT = 1.0e-008;
+	double deltaT = 2.0e-008;
 	double Ep = 0.1;
 	double Roe_criterion = 0.005;
 	double E_high = 0.009;
@@ -224,20 +224,20 @@ int X_np = gcount[myid]+6;    /**** How many cells in X-direction for each CPU *
 
 ////**** Periodic_conditionX ****////
 //// =========================================================================================================================================================== ////
-			icount = Y_m*Z_m;
+			icount = 3*Y_m*Z_m;
 
 			if (myid == 0){
 
 				itag=310;
-				MPI_Sendrecv((void *)&U1_[3][0][0], icount, MPI_DOUBLE, nproc-1, itag, (void *)&U1_[2][0][0], icount, MPI_DOUBLE, nproc-1, itag, comm, istat);
+				MPI_Sendrecv((void *)&U1_[3][0][0], icount, MPI_DOUBLE, nproc-1, itag, (void *)&U1_[0][0][0], icount, MPI_DOUBLE, nproc-1, itag, comm, istat);
 				itag=320;
-				MPI_Sendrecv((void *)&U2_[3][0][0], icount, MPI_DOUBLE, nproc-1, itag, (void *)&U2_[2][0][0], icount, MPI_DOUBLE, nproc-1, itag, comm, istat);
+				MPI_Sendrecv((void *)&U2_[3][0][0], icount, MPI_DOUBLE, nproc-1, itag, (void *)&U2_[0][0][0], icount, MPI_DOUBLE, nproc-1, itag, comm, istat);
 				itag=330;
-				MPI_Sendrecv((void *)&U3_[3][0][0], icount, MPI_DOUBLE, nproc-1, itag, (void *)&U3_[2][0][0], icount, MPI_DOUBLE, nproc-1, itag, comm, istat);
+				MPI_Sendrecv((void *)&U3_[3][0][0], icount, MPI_DOUBLE, nproc-1, itag, (void *)&U3_[0][0][0], icount, MPI_DOUBLE, nproc-1, itag, comm, istat);
 				itag=340;
-				MPI_Sendrecv((void *)&U4_[3][0][0], icount, MPI_DOUBLE, nproc-1, itag, (void *)&U4_[2][0][0], icount, MPI_DOUBLE, nproc-1, itag, comm, istat);
+				MPI_Sendrecv((void *)&U4_[3][0][0], icount, MPI_DOUBLE, nproc-1, itag, (void *)&U4_[0][0][0], icount, MPI_DOUBLE, nproc-1, itag, comm, istat);
 				itag=350;
-				MPI_Sendrecv((void *)&U5_[3][0][0], icount, MPI_DOUBLE, nproc-1, itag, (void *)&U5_[2][0][0], icount, MPI_DOUBLE, nproc-1, itag, comm, istat);
+				MPI_Sendrecv((void *)&U5_[3][0][0], icount, MPI_DOUBLE, nproc-1, itag, (void *)&U5_[0][0][0], icount, MPI_DOUBLE, nproc-1, itag, comm, istat);
 				
 			}
 			
@@ -247,15 +247,15 @@ int X_np = gcount[myid]+6;    /**** How many cells in X-direction for each CPU *
 				iend = gend[myid];
 
 				itag=310;
-				MPI_Sendrecv((void *)&U1_[iend][0][0], icount, MPI_DOUBLE, 0, itag, (void *)&U1_[iend+1][0][0], icount, MPI_DOUBLE,0, itag, comm, istat);
+				MPI_Sendrecv((void *)&U1_[iend-2][0][0], icount, MPI_DOUBLE, 0, itag, (void *)&U1_[iend+1][0][0], icount, MPI_DOUBLE,0, itag, comm, istat);
 				itag=320;
-				MPI_Sendrecv((void *)&U2_[iend][0][0], icount, MPI_DOUBLE, 0, itag, (void *)&U2_[iend+1][0][0], icount, MPI_DOUBLE,0, itag, comm, istat);
+				MPI_Sendrecv((void *)&U2_[iend-2][0][0], icount, MPI_DOUBLE, 0, itag, (void *)&U2_[iend+1][0][0], icount, MPI_DOUBLE,0, itag, comm, istat);
 				itag=330;
-				MPI_Sendrecv((void *)&U3_[iend][0][0], icount, MPI_DOUBLE, 0, itag, (void *)&U3_[iend+1][0][0], icount, MPI_DOUBLE,0, itag, comm, istat);
+				MPI_Sendrecv((void *)&U3_[iend-2][0][0], icount, MPI_DOUBLE, 0, itag, (void *)&U3_[iend+1][0][0], icount, MPI_DOUBLE,0, itag, comm, istat);
 				itag=340;
-				MPI_Sendrecv((void *)&U4_[iend][0][0], icount, MPI_DOUBLE, 0, itag, (void *)&U4_[iend+1][0][0], icount, MPI_DOUBLE,0, itag, comm, istat);
+				MPI_Sendrecv((void *)&U4_[iend-2][0][0], icount, MPI_DOUBLE, 0, itag, (void *)&U4_[iend+1][0][0], icount, MPI_DOUBLE,0, itag, comm, istat);
 				itag=350;
-				MPI_Sendrecv((void *)&U5_[iend][0][0], icount, MPI_DOUBLE, 0, itag, (void *)&U5_[iend+1][0][0], icount, MPI_DOUBLE,0, itag, comm, istat);
+				MPI_Sendrecv((void *)&U5_[iend-2][0][0], icount, MPI_DOUBLE, 0, itag, (void *)&U5_[iend+1][0][0], icount, MPI_DOUBLE,0, itag, comm, istat);
 				
 			}
 

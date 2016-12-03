@@ -125,11 +125,11 @@ if ((step%statistic_step == 0)) {
 			}
 
             
-			Ekini = rho0*(U0*U0+V0*V+W0*W0);
+			Ekini = U0*U0+V0*V+W0*W0;
 
-			t_non = (deltaT/(high/U0))*step;
+			t_non = (deltaT/(L/U0))*step;
             
-			epn = -(Ek-Ekq)/(deltaT/(high/U0))/X_out/Y_out/Z_out;
+			epn = -(Ek-Ekq)/(deltaT/(L/U0))/X_out/Y_out/Z_out;
 
             
 

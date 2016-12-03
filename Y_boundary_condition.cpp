@@ -56,12 +56,25 @@ double (*J)[Y_m][Z_m] = new double[X_np][Y_m][Z_m]
 			U4_[i][1][k] = U4_[i][ny][k];
 			U5_[i][1][k] = U5_[i][ny][k];
 
+			U1_[i][0][k] = U1_[i][ny-1][k];
+			U2_[i][0][k] = U2_[i][ny-1][k];
+			U3_[i][0][k] = U3_[i][ny-1][k];
+			U4_[i][0][k] = U4_[i][ny-1][k];
+			U5_[i][0][k] = U5_[i][ny-1][k];
+
 
 			U1_[i][nyy][k] = U1_[i][2][k];
 			U2_[i][nyy][k] = U2_[i][2][k];
 			U3_[i][nyy][k] = U3_[i][2][k];
 			U4_[i][nyy][k] = U4_[i][2][k];
 			U5_[i][nyy][k] = U5_[i][2][k];
+
+			U1_[i][nyyy][k] = U1_[i][3][k];
+			U2_[i][nyyy][k] = U2_[i][3][k];
+			U3_[i][nyyy][k] = U3_[i][3][k];
+			U4_[i][nyyy][k] = U4_[i][3][k];
+			U5_[i][nyyy][k] = U5_[i][3][k];
+
 
 			
 		}
