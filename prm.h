@@ -15,9 +15,9 @@ double f = 0.0;
 double Q0 = 0.0;
 double Qold = Q0;
 
-double L = 0.001444576075739;
+double L = deltaXI*X_out/2.0/3.1415928;
 
-double high = 0.001444576075739;
+double high = 2.0*3.1415*L;
 
 double psi = 0.001;
 
